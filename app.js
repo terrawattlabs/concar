@@ -64,14 +64,12 @@ app.get('/welcome', (req, res) => {
     //console.log('Automatic access token', req.session.token.token.access_token);
     
     var automatic_code = req.query.code;
-    console.log(automatic_code);
-    res.send("Here is the code I got - " + automatic_code);
 
     var options = {
       method: "POST",
       url: 'https://accounts.automatic.com/oauth/access_token',
       headers: {},
-      json: {"client_id": "e2a8e01cbed8378693d5",
+      data: {"client_id": "e2a8e01cbed8378693d5",
              "client_secret": "8dc63ba465926f9f18954a4726ce76e400b3a38d",
              "code": automatic_code,
              "grant_type": "authorization_code"
@@ -91,6 +89,7 @@ app.get('/welcome', (req, res) => {
      };
 
      request(options, callback);
+     res.send("Here is the code I got - " + automatic_code);
 
   } else {
     // No token, so redirect to login
