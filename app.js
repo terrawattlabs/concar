@@ -77,6 +77,9 @@ app.get('/welcome', (req, res) => {
     //res.send(automatic_code);
 
     request.post({url:'https://accounts.automatic.com/oauth/access_token', 
+      headers: {
+        "content-type" : "application/x-www-form-urlencoded"
+      },
       body: dataString
     }, 
       function(err,httpResponse,body){
