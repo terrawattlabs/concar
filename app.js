@@ -75,12 +75,12 @@ app.get('/welcome', (req, res) => {
               }}, 
       function(err,httpResponse,body){
 
-        console.log(body);
-        var jsonbody = JSON.parse(body);
-        console.log(jsonbody);
+        console.log(httpResponse);
+        //var jsonbody = JSON.parse(body);
+       // console.log(jsonbody);
 
 
-        output(jsonbody,err);
+        output(httpResponse,err);
     });
 
     
