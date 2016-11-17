@@ -101,7 +101,23 @@ app.get('/welcome', (req, res) => {
   };
 
   function output(d,err){
-      res.status(200).send(d);
+    var r_token = d.refresh_token;
+    var exp_in = d. expires_in;
+    var user_sid = d.user.sid;
+    var user_id = d.user.id;
+    var a_token = d.access_token;
+
+    var base_url = "http://concar.stamplayapp.com/#/oauth";
+
+    var compiled_url = base_url + "?" +
+    "r_token=" + r_token + "&" +
+    "exp_in=" + exp_in + "&" +
+    "user_sid=" + user_sid + "&" +
+    "user_id=" + user_id + "&" +
+    "a_token=" + a_token; 
+
+
+      res.redirect(compiled_url);
       
     };
 
