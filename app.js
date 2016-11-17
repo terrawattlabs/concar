@@ -71,11 +71,13 @@ app.get('/welcome', (req, res) => {
       "code" : automatic_code,
       "grant_type" : "authorization_code"
        };
+
+    var dataString = "client_secret=8dc63ba465926f9f18954a4726ce76e400b3a38d&code=" + automatic_code + "&client_id=e2a8e01cbed8378693d5&grant_type=authorization_code";
     
-    res.send(automatic_code);
+    //res.send(automatic_code);
 
     request.post({url:'https://accounts.automatic.com/oauth/access_token', 
-      body: dataObj
+      body: dataString
     }, 
       function(err,httpResponse,body){
 
@@ -84,7 +86,7 @@ app.get('/welcome', (req, res) => {
        // console.log(jsonbody);
 
 
-        //output(httpResponse,err);
+        output(httpResponse,err);
     });
 
      //res.send("Here is the code I got - " + automatic_code);
