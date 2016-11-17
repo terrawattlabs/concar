@@ -75,7 +75,7 @@ app.get('/welcome', (req, res) => {
               }}, 
       function(err,httpResponse,body){
 
-        console.log(body.refresh_token);
+        console.log(body);
         var jsonbody = JSON.parse(body);
         console.log(jsonbody);
 
