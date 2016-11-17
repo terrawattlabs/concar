@@ -1,5 +1,8 @@
 const express = require('express');
 const session = require('express-session');
+
+var request = require('request');
+var url = require('url');
 const port = process.env.PORT || 3000;
 const app = express();
 
@@ -56,15 +59,46 @@ app.get('/redirect', (req, res) => {
 
 app.get('/welcome', (req, res) => {
 
-  if (req.session.token) {
+  if (req.query.code) {
     // Display token to authenticated user
     console.log('Automatic access token', req.session.token.token.access_token);
+    
+    var automatic_code = req.query.code;
+    console.log(automatic_code);
+
+    var options = {
+      method: "POST",
+      url: 'https://accounts.automatic.com/oauth/access_token',
+      headers: {},
+      json: {"client_id": "e2a8e01cbed8378693d5",
+             "client_secret": "8dc63ba465926f9f18954a4726ce76e400b3a38d",
+             "code": automatic_code,
+             "grant_type": "authorization_code"
+            }
+    };
+    
+     var callback = function (error, response, body){
+      if (!error && response.statusCode == 200) {
+         
+      console.log('ran callback');
+
+  
+      } else {
+        console.log(error);
+      }
+
+     };
+
+     request(options, callback);
+
     res.send('You are logged in.<br>Access Token: ' +  req.session.token.token.access_token);
   } else {
     // No token, so redirect to login
-    res.send(req);
+    res.redirect('/');
   }
 });
+
+
 
 // Main page of app with link to log in
 app.get('/', (req, res) => {
