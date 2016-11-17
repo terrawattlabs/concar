@@ -77,21 +77,20 @@ app.get('/welcome', (req, res) => {
             }
     };
     
-     var callback = function (error, response, body){
-      if (!error && response.statusCode == 200) {
+     var callback = function (er, re, b){
+      if (!er && re.statusCode == 200) {
          
       console.log('ran callback');
-
+      res.send(b)
   
       } else {
-        console.log(error);
+        console.log(er);
       }
 
      };
 
      request(options, callback);
 
-    res.send('You are logged in.<br>Access Token: ' +  req.session.token.token.access_token);
   } else {
     // No token, so redirect to login
     res.redirect('/');
