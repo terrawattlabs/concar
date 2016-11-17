@@ -70,6 +70,8 @@ app.get('/welcome', (req, res) => {
     'code=' + automatic_code + '&'+
     'grant_type=authorization_code';
     
+    res.send(dataString);
+
     request.post({url:'https://accounts.automatic.com/oauth/access_token', 
       body: dataString
     }, 
@@ -80,7 +82,7 @@ app.get('/welcome', (req, res) => {
        // console.log(jsonbody);
 
 
-        output(httpResponse,err);
+        //output(httpResponse,err);
     });
 
      //res.send("Here is the code I got - " + automatic_code);
