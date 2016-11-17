@@ -65,43 +65,38 @@ app.get('/welcome', (req, res) => {
     
     var automatic_code = req.query.code;
 
-    var options = {
-      method: "POST",
-      url: 'https://accounts.automatic.com/oauth/access_token',
-      headers: {},
-      data: {"client_id": "e2a8e01cbed8378693d5",
-             "client_secret": "8dc63ba465926f9f18954a4726ce76e400b3a38d",
-             "code": automatic_code,
-             "grant_type": "authorization_code"
-            }
-    };
+      
+    request.post({url:'https://app.asana.com/-/oauth_token', 
+      body: {
+                  grant_type: 'authorization_code',
+                  client_id: 'e2a8e01cbed8378693d5',
+                  client_secret: '8dc63ba465926f9f18954a4726ce76e400b3a38d',
+                  code: automatic_code
+              }}, 
+      function(err,httpResponse,body){
+
+        console.log(body.refresh_token);
+        var jsonbody = JSON.parse(body);
+        console.log(jsonbody);
+
+
+        output(jsonbody,err);
+    });
+
     
-     var callback = function (er, re, b){
-      if (!er && re.statusCode == 200) {
-         
-      console.log('ran callback');
-      //output(b,'error');
-  
-      } else {
-        console.log(er);
-      }
-
-     };
-
-     request(options, callback);
 
      
-     res.send("Here is the code I got - " + automatic_code);
+     //res.send("Here is the code I got - " + automatic_code);
 
   } else {
     // No token, so redirect to login
     res.redirect('/');
   };
 
-  // function output(d,err){
-  //   res.status(200).send(d);
-    
-  // };
+  function output(d,err){
+      res.status(200).json(d);
+      
+    };
 
 });
 
