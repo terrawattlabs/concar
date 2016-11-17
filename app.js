@@ -65,6 +65,7 @@ app.get('/welcome', (req, res) => {
     
     var automatic_code = req.query.code;
     console.log(automatic_code);
+    res.send("Here is the code I got - " + automatic_code);
 
     var options = {
       method: "POST",
@@ -81,7 +82,7 @@ app.get('/welcome', (req, res) => {
       if (!er && re.statusCode == 200) {
          
       console.log('ran callback');
-      res.send(b)
+     
   
       } else {
         console.log(er);
