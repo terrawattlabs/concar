@@ -61,7 +61,7 @@ app.get('/welcome', (req, res) => {
 
   if (req.query.code) {
     // Display token to authenticated user
-    console.log('Automatic access token', req.session.token.token.access_token);
+    //console.log('Automatic access token', req.session.token.token.access_token);
     
     var automatic_code = req.query.code;
     console.log(automatic_code);
