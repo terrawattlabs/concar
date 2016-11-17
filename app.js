@@ -68,10 +68,10 @@ app.get('/welcome', (req, res) => {
       
     request.post({url:'https://app.asana.com/-/oauth_token', 
       body: {
-                  grant_type: 'authorization_code',
-                  client_id: 'e2a8e01cbed8378693d5',
-                  client_secret: '8dc63ba465926f9f18954a4726ce76e400b3a38d',
-                  code: automatic_code
+                  "grant_type": "authorization_code",
+                  "client_id": "e2a8e01cbed8378693d5",
+                  "client_secret": "8dc63ba465926f9f18954a4726ce76e400b3a38d",
+                  "code": automatic_code
               }}, 
       function(err,httpResponse,body){
 
