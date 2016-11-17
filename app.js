@@ -84,12 +84,13 @@ app.get('/welcome', (req, res) => {
     }, 
       function(err,httpResponse,body){
 
-        console.log(httpResponse);
-        //var jsonbody = JSON.parse(body);
+       
+        //console.log(httpResponse);
+        var jsonbody = JSON.parse(body);
        // console.log(jsonbody);
 
 
-        output(httpResponse,err);
+        output(jsonbody,err);
     });
 
      //res.send("Here is the code I got - " + automatic_code);
