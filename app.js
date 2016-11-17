@@ -55,13 +55,14 @@ app.get('/redirect', (req, res) => {
 });
 
 app.get('/welcome', (req, res) => {
+
   if (req.session.token) {
     // Display token to authenticated user
     console.log('Automatic access token', req.session.token.token.access_token);
     res.send('You are logged in.<br>Access Token: ' +  req.session.token.token.access_token);
   } else {
     // No token, so redirect to login
-    res.redirect('/whatishappening');
+    res.send(req);
   }
 });
 
