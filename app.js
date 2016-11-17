@@ -80,7 +80,7 @@ app.get('/welcome', (req, res) => {
       if (!er && re.statusCode == 200) {
          
       console.log('ran callback');
-     
+      output(b,'error');
   
       } else {
         console.log(er);
@@ -89,12 +89,20 @@ app.get('/welcome', (req, res) => {
      };
 
      request(options, callback);
-     res.send("Here is the code I got - " + automatic_code);
+
+     
+     // res.send("Here is the code I got - " + automatic_code);
 
   } else {
     // No token, so redirect to login
     res.redirect('/');
-  }
+  };
+
+  function output(d,err){
+    res.status(200).send(d);
+    
+  };
+  
 });
 
 
